@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:background="@drawable/tab_bg"
+    android:orientation="horizontal" >
+
+    <TextView
+        android:id="@+id/textMain1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.5"
+        android:drawableTop="@drawable/message_selected"
+        android:gravity="center_horizontal"
+        android:text="@string/main1"
+        android:textColor="#82858b" />
+
+    <TextView
+        android:id="@+id/textMain2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.5"
+        android:drawableTop="@drawable/contacts_unselected"
+        android:gravity="center_horizontal"
+        android:text="@string/main2"
+        android:textColor="#82858b" />
+
+    <TextView
+        android:id="@+id/textMain3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.5"
+        android:drawableTop="@drawable/setting_unselected"
+        android:gravity="center_horizontal"
+        android:text="@string/main3"
+        android:textColor="#82858b" />
+
+</LinearLayout>

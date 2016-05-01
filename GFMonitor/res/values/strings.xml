@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">GFMonitor</string>
+    <string name="action_settings">Settings</string>
+    <string name="enterButton">Enter APP</string>
+    <string name="mainText">主界面</string>
+    <string name="main1">主页</string>
+    <string name="main2">好友</string>
+    <string name="main3">设置</string>
+    <string name="contentDescription">contentDescription</string>
+
+</resources>

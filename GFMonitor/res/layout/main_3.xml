@@ -10,4 +10,10 @@
         android:text="@string/main3"
         android:textSize="45sp" />
 
+    <ListView
+        android:id="@+id/settingList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+    </ListView>
+
 </LinearLayout>

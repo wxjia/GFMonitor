@@ -9,5 +9,6 @@
     <string name="main2">好友</string>
     <string name="main3">设置</string>
     <string name="contentDescription">contentDescription</string>
+    <string name="versionCheck">版本更新</string>
 
 </resources>

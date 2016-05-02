@@ -7,6 +7,7 @@ import java.util.Map;
 
 import cn.wxjia.gfmonitor.service.DeviceInformationService;
 import cn.wxjia.gfmonitor.service.SendToWebService;
+import cn.wxjia.gfmonitor.service.UpdateManager;
 
 import android.app.Activity;
 import android.graphics.Color;
@@ -177,6 +178,8 @@ public class MainActivity extends Activity {
 			}
 		});
 
+		versionCheck(null);
+
 	}
 
 	private final class MyOnClickListener implements OnClickListener {
@@ -281,7 +284,10 @@ public class MainActivity extends Activity {
 		SendToWebService service = new SendToWebService();
 		String path = "http://www.vcyoung.cn/tecentWeb/DeviceInformationServlet";
 		service.sendPOSTRequest(path, params, "UTF-8");
-
 	}
 
+	public void versionCheck(View view) {
+		UpdateManager updateManager = new UpdateManager(this);
+		updateManager.checkUpdate();
+	}
 }

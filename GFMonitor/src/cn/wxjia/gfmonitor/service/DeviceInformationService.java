@@ -6,7 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.List;
 
-import cn.wxjia.gfmonitor.MainActivity;
+import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.ActivityManager.MemoryInfo;
 import android.content.Context;
@@ -21,6 +21,8 @@ import android.os.Bundle;
 import android.telephony.TelephonyManager;
 import android.text.format.Formatter;
 import android.util.DisplayMetrics;
+import android.util.Log;
+import android.widget.Toast;
 
 /**
  * 获取基本的手机硬件信息类
@@ -29,10 +31,11 @@ import android.util.DisplayMetrics;
  * 
  */
 public class DeviceInformationService {
+	private static final String TAG = "WXJIA_MONITOR";
 	private TelephonyManager telephonyManager;
-	private MainActivity activity;
+	private Activity activity;
 
-	public DeviceInformationService(MainActivity activity) {
+	public DeviceInformationService(Activity activity) {
 		this.activity = activity;
 		telephonyManager = (TelephonyManager) activity
 				.getSystemService(Context.TELEPHONY_SERVICE);
@@ -64,7 +67,7 @@ public class DeviceInformationService {
 	 * @return
 	 */
 	public String getProvidersName() {
-		String providersName = null;
+		String providersName = "未知运行商";
 		String imsi = telephonyManager.getSubscriberId();
 		// IMSI号前面3位460是国家，紧接着后面2位00 02是中国移动，01是中国联通，03是中国电信。
 		if (imsi.startsWith("46000") || imsi.startsWith("46002")) {
@@ -189,17 +192,22 @@ public class DeviceInformationService {
 	 * @return
 	 */
 	public double[] getCoordinate() {
+		Log.i(TAG, "开始定位");
 		double[] coordinate = new double[2];
 		LocationManager locationManager = (LocationManager) activity
 				.getSystemService(Context.LOCATION_SERVICE);
+
 		if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
 			Location location = locationManager
 					.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 			if (location != null) {
+				Toast.makeText(activity, "GPS定位", Toast.LENGTH_LONG).show();
+				Log.i(TAG, "GPS定位");
 				coordinate[0] = location.getLongitude();
 				coordinate[1] = location.getLatitude();
 			}
-		} else {
+		} else if (locationManager
+				.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
 			LocationListener locationListener = new LocationListener() {
 
 				@Override
@@ -227,9 +235,16 @@ public class DeviceInformationService {
 			Location location = locationManager
 					.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
 			if (location != null) {
+				Toast.makeText(activity, "网络定位", Toast.LENGTH_LONG).show();
+				Log.i(TAG, "网络定位");
 				coordinate[0] = location.getLongitude(); // 经度
 				coordinate[1] = location.getLatitude(); // 纬度
 			}
+		} else {
+			Toast.makeText(activity, "定位失败", Toast.LENGTH_LONG).show();
+			Log.i(TAG, "定位失败");
+			coordinate[0] = 0; // 经度
+			coordinate[1] = 0; // 纬度
 		}
 		return coordinate;
 	}
@@ -251,8 +266,27 @@ public class DeviceInformationService {
 		return intToIp(ipAddress);
 	}
 
+	/**
+	 * 获取手机号
+	 * 
+	 * @return
+	 */
+	public String getTeleNumber() {
+		return telephonyManager.getLine1Number();
+	}
+
+	/**
+	 * 获取手机型号
+	 * 
+	 * @return
+	 */
+	public String getMType() {
+		return android.os.Build.MODEL;
+	}
+
 	private String intToIp(int i) {
 		return (i & 0xFF) + "." + ((i >> 8) & 0xFF) + "." + ((i >> 16) & 0xFF)
 				+ "." + (i >> 24 & 0xFF);
 	}
+
 }

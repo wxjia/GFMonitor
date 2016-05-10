@@ -29,7 +29,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 public class UpdateManager {
-	private static final String TAG = "VersionService";
+	private static final String TAG = "WXJIA_MONITOR";
 	private static final int DOWNLOADING = 1;
 	private static final int DOWNLOAD_FINISH = 2;
 	HashMap<String, String> mHashMap;
@@ -68,7 +68,7 @@ public class UpdateManager {
 		if (isUpdate()) {
 			showNoticeDialog();
 		} else {
-			Toast.makeText(mContext, "软件最新", Toast.LENGTH_LONG).show();
+			// Toast.makeText(mContext, "软件最新", Toast.LENGTH_LONG).show();
 		}
 	}
 

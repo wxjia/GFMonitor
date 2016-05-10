@@ -13,7 +13,7 @@ import java.util.Map;
 import android.util.Log;
 
 public class SendToWebService {
-	private static final String TAG = "MainActivity";
+	private static final String TAG = "WXJIA_MONITOR";
 
 	/**
 	 * ∑¢ÀÕPOST«Î«Û

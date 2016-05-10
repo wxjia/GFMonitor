@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="400dp"
-        android:onClick="enterMain"
+        android:onClick="enterLogin"
         android:text="@string/enterButton" />
 
 </RelativeLayout>
